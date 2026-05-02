@@ -9,13 +9,12 @@ jobs:
 deploy:
 runs-on: ubuntu-latest
 
-```
 steps:
   - name: Checkout code
-    uses: actions/checkout@v3
+    uses: actions/checkout@v6
 
   - name: Setup Node.js
-    uses: actions/setup-node@v3
+    uses: actions/setup-node@v6
     with:
       node-version: '22'
 
@@ -43,4 +42,3 @@ steps:
 #       heroku container:release web -a ${{ secrets.HEROKU_APP_NAME }}
 #     env:
 #       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-```
