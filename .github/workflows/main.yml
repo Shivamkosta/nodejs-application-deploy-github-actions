@@ -2,12 +2,14 @@ name: Node App Deploy to Heroku
 
 on:
 push:
-branches: [ "master" ]
+branches:
+- master
 
 jobs:
 build:
 runs-on: ubuntu-latest
 
+```
 steps:
   - name: Checkout code
     uses: actions/checkout@v3
@@ -22,4 +24,4 @@ steps:
 
   - name: Run tests
     run: npm test
-
+```
