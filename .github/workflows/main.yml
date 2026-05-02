@@ -1,4 +1,4 @@
-name: Node App Deploy to Heroku
+name: Node App Deploy
 
 on:
 push:
