@@ -1,44 +1,26 @@
-name: Deploy Node App to Heroku
+name: Node.js CI/CD Pipeline
 
 on:
-push:
-branches:
-- master
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
-deploy:
-runs-on: ubuntu-latest
+  build-test:
+    runs-on: ubuntu-latest
 
-steps:
-  - name: Checkout code
-    uses: actions/checkout@v6
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-  - name: Setup Node.js
-    uses: actions/setup-node@v6
-    with:
-      node-version: '22'
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
 
-  - name: Install dependencies
-    run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-  - name: Run tests
-    run: npm test
-
-#   - name: Login to Heroku Container Registry
-#     run: |
-#       echo "${{ secrets.HEROKU_API_KEY }}" | docker login --username=_ --password-stdin registry.heroku.com
-
-#   - name: Build Docker image
-#     run: |
-#       docker build -t registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web .
-
-#   - name: Push Docker image
-#     run: |
-#       docker push registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
-
-#   - name: Release on Heroku
-#     run: |
-#       curl https://cli-assets.heroku.com/install.sh | sh
-#       heroku container:release web -a ${{ secrets.HEROKU_APP_NAME }}
-#     env:
-#       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      - name: Run Tests
+        run: npm test
